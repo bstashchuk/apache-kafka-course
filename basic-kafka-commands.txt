@@ -33,7 +33,7 @@ bin/kafka-console-producer.sh \
 START CONSOLE CONSUMER
 bin/kafka-console-consumer.sh \
 --bootstrap-server localhost:9092 \
---topic test \
+--topic test
 
 START CONSOLE CONSUMER AND READ MESSAGES FROM BEGINNING
 bin/kafka-console-consumer.sh \
