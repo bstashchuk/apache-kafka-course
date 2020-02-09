@@ -16,54 +16,37 @@ bin/zookeeper-shell.sh localhost:2181 get /brokers/ids/0
 
 CREATE TOPIC
 bin/kafka-topics.sh \
---bootstrap-server localhost:9092 \
+--bootstrap-server localhost:9092,localhost:9093,localhost:9094 \
 --create \
 --replication-factor 1 \
---partitions 3 \
---topic test
+--partitions 5 \
+--topic cars
 
 LIST TOPICS
 bin/kafka-topics.sh \
---bootstrap-server localhost:9092 \
+--bootstrap-server localhost:9092,localhost:9093,localhost:9094 \
 --list
 
 TOPIC DETAILS
 bin/kafka-topics.sh \
---bootstrap-server localhost:9092 \
+--bootstrap-server localhost:9092,localhost:9093,localhost:9094 \
 --describe \
---topic test
+--topic cars
 
 START CONSOLE PRODUCER
 bin/kafka-console-producer.sh \
---broker-list localhost:9092 \
---topic test
+--broker-list localhost:9092,localhost:9093,localhost:9094 \
+--topic cars
 
 START CONSOLE CONSUMER
 bin/kafka-console-consumer.sh \
---bootstrap-server localhost:9092 \
---topic test
+--bootstrap-server localhost:9092,localhost:9093,localhost:9094 \
+--topic cars
 
 START CONSOLE CONSUMER AND READ MESSAGES FROM BEGINNING
 bin/kafka-console-consumer.sh \
---bootstrap-server localhost:9092 \
---topic test \
+--bootstrap-server localhost:9092,localhost:9093,localhost:9094 \
+--topic cars \
 --from-beginning
 
-START CONSOLE CONSUMER WITH SPECIFIC CONSUMER GROUP
-bin/kafka-console-consumer.sh \
---bootstrap-server localhost:9092 \
---topic test \
---group test \
---from-beginning
-
-LIST CONSUMER GROUPS
-bin/kafka-consumer-groups.sh \
---bootstrap-server localhost:9092 \
---list
-
-CONSUMER GROUP DETAILS
-bin/kafka-consumer-groups.sh \
---bootstrap-server localhost:9092 \
---group test \
---describe
 
