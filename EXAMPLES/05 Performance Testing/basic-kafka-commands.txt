@@ -1,0 +1,86 @@
+Basic KAFKA Commands
+
+START ZOOKEEPER
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+START KAFKA BROKER
+bin/kafka-server-start.sh config/server0.properties
+bin/kafka-server-start.sh config/server1.properties
+bin/kafka-server-start.sh config/server2.properties
+
+CREATE TOPIC
+bin/kafka-topics.sh \
+--bootstrap-server localhost:9092 \
+--create \
+--replication-factor 3 \
+--partitions 100 \
+--topic perf
+
+LIST TOPICS
+bin/kafka-topics.sh \
+--bootstrap-server localhost:9092 \
+--list
+
+TOPIC DETAILS
+bin/kafka-topics.sh \
+--bootstrap-server localhost:9092 \
+--describe \
+--topic perf
+
+START CONSOLE PRODUCER
+bin/kafka-console-producer.sh \
+--broker-list localhost:9092 \
+--topic perf
+
+START CONSOLE CONSUMER
+bin/kafka-console-consumer.sh \
+--bootstrap-server localhost:9092 \
+--topic perf
+
+START CONSOLE CONSUMER AND READ FROM SPECIFIC PARTITION
+bin/kafka-console-consumer.sh \
+--bootstrap-server localhost:9092 \
+--partition 4 \
+--from-beginning \
+--topic perf
+
+START CONSOLE CONSUMER AND READ MESSAGES FROM BEGINNING
+bin/kafka-console-consumer.sh \
+--bootstrap-server localhost:9092 \
+--topic perf \
+--from-beginning
+
+START CONSOLE CONSUMER WITH SPECIFIC CONSUMER GROUP
+bin/kafka-console-consumer.sh \
+--bootstrap-server localhost:9092 \
+--topic perf2 \
+--group perf \
+--from-beginning
+
+LIST CONSUMER GROUPS
+bin/kafka-consumer-groups.sh \
+--bootstrap-server localhost:9092 \
+--list
+
+CONSUMER GROUP DETAILS
+bin/kafka-consumer-groups.sh \
+--bootstrap-server localhost:9092 \
+--group perf \
+--describe
+
+PRODUCER PERFORMANCE TEST
+bin/kafka-producer-perf-test.sh \
+--topic perf2 \
+--num-records 1000 \
+--throughput 10 \
+--record-size 1000 \
+--producer-props \
+bootstrap.servers=localhost:9092
+
+
+CONSUMER PERFORMANCE TEST
+bin/kafka-consumer-perf-test.sh \
+--broker-list localhost:9092 \
+--topic perf \
+--messages 1000000
+
