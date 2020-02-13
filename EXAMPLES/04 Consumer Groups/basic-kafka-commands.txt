@@ -1,0 +1,68 @@
+Basic KAFKA Commands
+
+START ZOOKEEPER
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+START KAFKA BROKER
+bin/kafka-server-start.sh config/server.properties
+
+CREATE TOPIC
+bin/kafka-topics.sh \
+--bootstrap-server localhost:9092 \
+--create \
+--replication-factor 1 \
+--partitions 5 \
+--topic numbers
+
+LIST TOPICS
+bin/kafka-topics.sh \
+--bootstrap-server localhost:9092 \
+--list
+
+TOPIC DETAILS
+bin/kafka-topics.sh \
+--bootstrap-server localhost:9092 \
+--describe \
+--topic numbers
+
+START CONSOLE PRODUCER
+bin/kafka-console-producer.sh \
+--broker-list localhost:9092 \
+--topic numbers
+
+START CONSOLE CONSUMER
+bin/kafka-console-consumer.sh \
+--bootstrap-server localhost:9092 \
+--topic numbers
+
+START CONSOLE CONSUMER AND READ FROM SPECIFIC PARTITION
+bin/kafka-console-consumer.sh \
+--bootstrap-server localhost:9092 \
+--partition 4 \
+--from-beginning \
+--topic numbers
+
+START CONSOLE CONSUMER AND READ MESSAGES FROM BEGINNING
+bin/kafka-console-consumer.sh \
+--bootstrap-server localhost:9092 \
+--topic numbers \
+--from-beginning
+
+START CONSOLE CONSUMER WITH SPECIFIC CONSUMER GROUP
+bin/kafka-console-consumer.sh \
+--bootstrap-server localhost:9092 \
+--topic numbers \
+--group nums \
+--from-beginning
+
+LIST CONSUMER GROUPS
+bin/kafka-consumer-groups.sh \
+--bootstrap-server localhost:9092 \
+--list
+
+CONSUMER GROUP DETAILS
+bin/kafka-consumer-groups.sh \
+--bootstrap-server localhost:9092 \
+--group nums \
+--describe
+
