@@ -18,9 +18,9 @@ CREATE TOPIC
 bin/kafka-topics.sh \
 --bootstrap-server localhost:9092,localhost:9093,localhost:9094 \
 --create \
---replication-factor 1 \
+--replication-factor 3 \
 --partitions 5 \
---topic cars
+--topic animals
 
 LIST TOPICS
 bin/kafka-topics.sh \
@@ -46,7 +46,7 @@ bin/kafka-console-consumer.sh \
 START CONSOLE CONSUMER AND READ MESSAGES FROM BEGINNING
 bin/kafka-console-consumer.sh \
 --bootstrap-server localhost:9092,localhost:9093,localhost:9094 \
---topic cars \
+--topic test-topic \
 --from-beginning
 
 
